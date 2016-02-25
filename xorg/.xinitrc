@@ -20,5 +20,6 @@ fi
 xsetroot -cursor_name left_ptr &
 sh ~/.fehbg &
 
+compton --config $HOME/.config/compton/compton.conf -b &
 sxhkd &
 exec bspwm
