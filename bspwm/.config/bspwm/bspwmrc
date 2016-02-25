@@ -11,7 +11,14 @@ bspc config focus_by_distance   true
 bspc monitor DVI-I-2 -d web vid work
 bspc monitor DVI-I-3 -d term chat steam
 
-bspc rule -a mpv floating=on desktop=^2
+bspc rule -a mpv floating=on
 bspc rule -a steam desktop=^6
+bspc rule -a feh floating=on
+bspc rule -a imv floating=on
+bspc rule -a sxiv floating=on
+bspc rule -a firefox desktop=^1
+
+bspc desktop -f term 
+urxvt &
 
 panel &
