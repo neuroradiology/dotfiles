@@ -1,4 +1,4 @@
-URxvt.font:		xft:Tewi:size=10
+URxvt.font:		xft:source code pro:size=11
 
 URxvt.scrollBar:	false
 URxvt.loginShell:	true
