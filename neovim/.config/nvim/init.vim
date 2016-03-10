@@ -2,13 +2,17 @@
 call plug#begin()
 
 Plug 'itchyny/lightline.vim'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 " }}}
 
 " Colors {{{
-colorscheme alduin  " default colorscheme
-syntax enable       " enable syntax highlighing
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1   " enable 24-bit colour
+let g:gruvbox_italic=1              " enable for gruvbox in terminals
+colorscheme gruvbox                  " default colorscheme
+set background=dark                 " dark gruvbox mode
+syntax enable                       " enable syntax highlighing
 " }}}
 
 " Spaces & Tabs {{{
@@ -19,9 +23,6 @@ set autoindent      " very basic automatic indentation
 " }}}
 
 " UI Config {{{
-filetype plugin indent on   " load filetype specific indent and plugin files if
-                            " they exist
-
 set relativenumber  " show relative line numbers on the left side
 set number          " show absolute line number of the current line
 set showcmd         " show last command entered in bottom bar
@@ -41,7 +42,7 @@ set smartcase   " Override 'ignorecase' if the search pattern includes upper
 " }}}
 
 " Statusline {{{
-let g:lightline = { 'colorscheme' : 'alduin' }
+let g:lightline = { 'colorscheme' : 'gruvbox' }
 " }}}
 
 " Folding {{{
