@@ -17,6 +17,7 @@ bspc rule -a steam desktop=^6
 bspc rule -a feh state=floating
 bspc rule -a imv state=floating
 bspc rule -a Firefox desktop='^1'
+bspc rule -a Deluge desktop=^3
 
 bspc desktop -f term 
 urxvt &
