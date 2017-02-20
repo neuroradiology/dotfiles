@@ -21,4 +21,5 @@ bspc rule -a Deluge desktop=^3
 bspc desktop -f term 
 urxvt &
 
+transparency &
 panel &

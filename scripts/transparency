@@ -1,0 +1,10 @@
+#! /bin/sh
+
+bspc subscribe node |
+grep "node_manage" --line-buffered |
+while read -r line; do
+    win_id=$(echo $line | cut -d' ' -f4)
+    compton-trans -w $win_id -o 95
+    echo $win_id;
+    echo $line;
+done
