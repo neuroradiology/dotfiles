@@ -1,7 +1,9 @@
 " VimPlug: {{{
 call plug#begin()
 
+" Themes
 Plug 'morhetz/gruvbox'
+Plug 'fneu/breezy'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -15,7 +17,8 @@ call plug#end()
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1   " enable 24-bit colour
 let g:gruvbox_italic=1              " enable for gruvbox in terminals
 set background=dark                 " dark gruvbox mode
-colorscheme gruvbox                 " default colorscheme
+set termguicolors
+colorscheme breezy                  " default colorscheme
 " }}}
 
 " Indentation: {{{
