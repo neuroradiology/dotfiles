@@ -9,7 +9,7 @@ trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 num_mon=$(bspc query -M) # determine number of monitors
 PANEL_HEIGHT=24
-PANEL_FONT_FAMILY="fira mono:size=11"
+PANEL_FONT_FAMILY="source code pro:size=11"
 
 x_Offset=0
 
