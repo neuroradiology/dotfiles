@@ -9,6 +9,7 @@ alias ls='ls --color=auto'
 alias ll='ls -l --color=auto'
 alias la='ls -a --color=auto'
 alias lla='ls -la --color=auto'
+alias cl='clear'
 
 # Configs
 alias vimrc='nvim ~/dotfiles/neovim/.config/nvim/init.vim'
