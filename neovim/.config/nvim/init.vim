@@ -1,10 +1,14 @@
 " VimPlug: {{{
 call plug#begin()
 
+"General
+Plug 'tpope/vim-fugitive'
+
 " Themes
 Plug 'morhetz/gruvbox'
 Plug 'fneu/breezy'
 
+" Fuzzy Finders
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
