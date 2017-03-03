@@ -18,3 +18,9 @@ PS1='[\u@\h \W]\$ '
 
 source /usr/share/fzf/key-bindings.bash
 source liquidprompt
+
+# First TAB lists all possible results
+# Next TABs cycle through the results
+bind "TAB:menu-complete"
+bind "set show-all-if-ambiguous on"
+bind "set menu-complete-display-prefix on"
