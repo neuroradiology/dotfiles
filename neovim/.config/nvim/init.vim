@@ -8,6 +8,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'morhetz/gruvbox'
 Plug 'fneu/breezy'
 
+Plug 'lilydjwg/colorizer'
+
 " Fuzzy Finders
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
