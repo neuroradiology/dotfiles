@@ -19,6 +19,6 @@ bspc rule -a Firefox desktop='^1'
 bspc rule -a Deluge desktop=^3
 
 bspc desktop -f term 
-urxvt &
+alacritty &
 
 panel &
