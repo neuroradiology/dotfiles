@@ -27,6 +27,7 @@ do
     do
         monitor="$(echo $line | cut -d' ' -f2)"
         desktop="$(echo $line | cut -d' ' -f3)"
+        node="$(echo $line | cut -d' ' -f4)"
 
         if [ $monitor == $i ]
         then
