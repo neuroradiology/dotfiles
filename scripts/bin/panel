@@ -35,7 +35,7 @@ do
             do
                 if [ $(bspc query -N -n focused) == $node ]
                 then
-                    echo T$(xprop -id $node | awk '/WM_CLASS/{print $4}')
+                    echo T$(xprop -id $node | awk '/WM_CLASS/{print $4}' | sed -e 's/^"//' -e 's/"$//')
                 fi
             done
         fi
