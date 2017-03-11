@@ -1,0 +1,30 @@
+[options]
+font = Fira Mono 11
+
+[colors]
+foreground =   #fcfcfc
+background =   #232629
+
+color0 =       #31363b
+color8 =       #4d4d4d
+
+color1 =       #ed2929
+color9 =       #ed1515
+
+color2 =       #21d96d
+color10 =      #0bd961
+
+color3 =       #fcc74c
+color11 =      #fde04b
+
+color4 =       #3daee9
+color12 =      #3d95e9
+
+color5 =       #9847b5
+color13 =      #a94fc9
+
+color6 =       #1abc9c
+color14 =      #1cdc9a
+
+color7 =       #eff0f1
+color15 =      #fcfcfc
