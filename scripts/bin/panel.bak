@@ -1,0 +1,63 @@
+#! /bin/sh
+
+if [ $(pgrep -cx panel) -gt 1 ] ; then
+	printf "%s\n" "The panel is already running." >&2
+	exit 1
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+num_mon=$(bspc query -M) # determine number of monitors
+PANEL_HEIGHT=24
+PANEL_FONT_FAMILY="source code pro:size=11"
+
+x_Offset=0
+
+bspc config top_padding $PANEL_HEIGHT
+
+. panel_colors
+
+for i in $num_mon; do
+	# remove any open panel fifo and create a new one
+	[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+	mkfifo "$PANEL_FIFO"
+
+	bspc subscribe report |
+        grep -oE "[Mm]$(bspc query -T -m $i | awk -F '"|"' '{print $4}')[^TM]*[TML]" --line-buffered |
+		while read line; do echo W$line; done  > "$PANEL_FIFO" &
+        
+        bspc subscribe node node_focus | while read -r line; do
+            case $line in
+                node_focus*)
+                    monitor="$(echo $line | cut -d' ' -f2)"
+                    desktop="$(echo $line | cut -d' ' -f3)"
+                    node="$(echo $line | cut -d' ' -f4)"
+                    if [ $monitor == $i ]; then
+                        list='T'
+                        for j in $(bspc query -N -n .window -d $desktop); do
+                            focused_window=$(bspc query -N -n focused)
+                            if [ $focused_window == $j ]; then
+                                list+=":F"
+                            else
+                                list+=":U"
+                            fi
+                            list+=$(xprop -id $j | awk '/WM_CLASS/{print $4}')
+                        done
+                        echo "${list//\"}"
+                    fi
+                    ;;
+            esac
+        done > "$PANEL_FIFO" &
+                    
+#        xtitle -sf 'T%s' > "$PANEL_FIFO" &
+	clock -sf "S%a %d %b %H:%M" > "$PANEL_FIFO" &
+
+	monitor_width=$(bspc query -T -m $i | grep -oE "[0-9]{0,4}" | sed -n '16 p')
+	
+	cat "$PANEL_FIFO" | panel_bar |	lemonbar -g "$monitor_width"x"$PANEL_HEIGHT"+"$x_Offset" -f "$PANEL_FONT_FAMILY" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
+
+	x_Offset=$(expr $x_Offset + $monitor_width)
+
+done
+
+wait

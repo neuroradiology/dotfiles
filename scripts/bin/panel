@@ -1,0 +1,54 @@
+#! /bin/sh
+
+if [ $(pgrep -cx panel) -gt 1 ]
+then
+	printf "%s\n" "The panel is already running." >&2
+	exit 1
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+PANEL_HEIGHT=24
+PANEL_FONT_FAMILY="Noto Sans:size=11"
+
+bspc config top_padding "$PANEL_HEIGHT"
+
+for i in $(bspc query -M)
+do
+    PANEL_FIFO=/tmp/$i
+
+    # remove any open panel fifo and create a new one
+    [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+    mkfifo "$PANEL_FIFO"
+
+    # Determines name of focused window per monitor
+    bspc subscribe node_focus |
+    while read -r line
+    do
+        monitor="$(echo $line | cut -d' ' -f2)"
+        desktop="$(echo $line | cut -d' ' -f3)"
+
+        if [ $monitor == $i ]
+        then
+            for node in $(bspc query -N -n .window -d $desktop)
+            do
+                if [ $(bspc query -N -n focused) == $node ]
+                then
+                    echo T$(xprop -id $node | awk '/WM_CLASS/{print $4}')
+                fi
+            done
+        fi
+    done > "$PANEL_FIFO" &
+
+    #xtitle -sf "T%s" > "$PANEL_FIFO" &
+    clock -sf "S%a %d %b %H:%M" > "$PANEL_FIFO" &
+
+    monitor_width=$(bspc query -T -m $i | jq .rectangle.width)
+    monitor_x=$(bspc query -T -m $i | jq .rectangle.x)
+
+    echo $PANEL_FIFO
+
+    cat "$PANEL_FIFO" | panel_bar | lemonbar -g "$monitor_width"x"$PANEL_HEIGHT"+"$monitor_x" -f "$PANEL_FONT_FAMILY" &
+done
+
+wait
