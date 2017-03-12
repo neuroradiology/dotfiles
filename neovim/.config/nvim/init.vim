@@ -7,6 +7,7 @@ Plug 'tpope/vim-fugitive'
 " Themes
 Plug 'morhetz/gruvbox'
 Plug 'fneu/breezy'
+Plug 'jacoborus/tender.vim'
 
 Plug 'lilydjwg/colorizer'
 
