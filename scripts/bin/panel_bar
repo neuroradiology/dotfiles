@@ -11,5 +11,5 @@ do
 			title="${line#?}"
 			;;
 	esac
-	printf "%s\n" "%{c}${title}%{r}${sys_infos}"
+	printf "%s\n" "%{c}${title}%{r}${sys_infos} "
 done
