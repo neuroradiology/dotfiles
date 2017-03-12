@@ -46,8 +46,6 @@ do
     monitor_width=$(bspc query -T -m $i | jq .rectangle.width)
     monitor_x=$(bspc query -T -m $i | jq .rectangle.x)
 
-    echo $PANEL_FIFO
-
     cat "$PANEL_FIFO" | panel_bar | lemonbar -g "$monitor_width"x"$PANEL_HEIGHT"+"$monitor_x" -f "$PANEL_FONT_FAMILY" &
 done
 
