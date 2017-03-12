@@ -20,6 +20,14 @@ do
     # remove any open panel fifo and create a new one
     [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
     mkfifo "$PANEL_FIFO"
+    
+    # Desktops per monitor
+    bspc subscribe report |
+    grep -oE "[Mm]$(bspc query -T -m $i | awk -F '"|"' '{print $4}')[^TM]*[TML]" --line-buffered |
+    while read -r line
+    do
+        echo W$line
+    done > "$PANEL_FIFO" &
 
     # Determines name of focused window per monitor
     bspc subscribe node_focus |

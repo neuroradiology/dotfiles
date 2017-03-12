@@ -1,15 +1,52 @@
 #! /bin/sh
 while read -r line
 do
-	case $line in
-		S*)
-			# clock output
-			sys_infos="${line#?}"
-			;;
-		T*)
-			# xtitle output
-			title="${line#?}"
-			;;
-	esac
-	printf "%s\n" "%{c}${title}%{r}${sys_infos} "
+    case $line in
+        S*)
+            # clock output
+            sys_infos="${line#?}"
+            ;;
+        T*)
+            # xtitle output
+            title="${line#?}"
+            ;;
+        W*)
+            wm_infos=""
+            IFS=':'
+            set -- ${line#?}
+            while [ $# -gt 0 ]
+            do
+                item=$1
+                name=${item#?}
+                case $item in
+                    O*)
+                        # focused occupied desktop
+                        wm_infos="${wm_infos} ${name} "
+                        ;;
+                    F*)
+                        # focused free desktop
+                        wm_infos="${wm_infos} ${name} "
+                        ;;
+                    U*)
+                        # focused urgent desktop
+                        wm_infos="${wm_infos} ${name} "
+                        ;;
+                    o*)
+                        # occupied desktop
+                        wm_infos="${wm_infos} ${name} "
+                        ;;
+                    f*)
+                        # free desktop
+                        wm_infos="${wm_infos} ${name} "
+                        ;;
+                    u*)
+                        # urgent desktop
+                        wm_infos="${wm_infos} ${name} "
+                        ;;
+                esac
+                shift
+            done
+            ;;
+    esac
+    printf "%s\n" "%{l}${wm_infos}%{c}${title}%{r}${sys_infos} "
 done
