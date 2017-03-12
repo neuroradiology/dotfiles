@@ -9,7 +9,7 @@ fi
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 PANEL_HEIGHT=24
-PANEL_FONT_FAMILY="Noto Sans:size=11"
+PANEL_FONT_FAMILY="Fira Mono:size=11"
 
 bspc config top_padding "$PANEL_HEIGHT"
 
@@ -35,13 +35,12 @@ do
             do
                 if [ $(bspc query -N -n focused) == $node ]
                 then
-                    echo T$(xprop -id $node | awk '/WM_CLASS/{print $4}' | sed -e 's/^"//' -e 's/"$//')
+                    xtitle -sf "T%s" $node &
                 fi
             done
         fi
     done > "$PANEL_FIFO" &
 
-    #xtitle -sf "T%s" > "$PANEL_FIFO" &
     clock -sf "S%a %d %b %H:%M" > "$PANEL_FIFO" &
 
     monitor_width=$(bspc query -T -m $i | jq .rectangle.width)
