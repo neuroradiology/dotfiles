@@ -1,14 +1,17 @@
 #! /bin/sh
+
+source colours
+
 while read -r line
 do
     case $line in
         S*)
             # clock output
-            sys_infos="${line#?}"
+            sys_infos="%{F$light4}${line#?}%{F-}"
             ;;
         T*)
             # xtitle output
-            title="${line#?}"
+            title="%{F$light4}${line#?}%{F-}"
             ;;
         W*)
             wm_infos=""
@@ -21,11 +24,11 @@ do
                 case $item in
                     O*)
                         # focused occupied desktop
-                        wm_infos="${wm_infos} ${name} "
+                        wm_infos="${wm_infos}%{F$dark0}%{B$light4}%{U$light1}%{+u} ${name} %{-u}%{B-}%{F-}"
                         ;;
                     F*)
                         # focused free desktop
-                        wm_infos="${wm_infos} ${name} "
+                        wm_infos="${wm_infos}%{F$dark3}%{B$light4}%{U$light1}%{+u} ${name} %{-u}%{B-}%{F-}"
                         ;;
                     U*)
                         # focused urgent desktop
@@ -33,11 +36,11 @@ do
                         ;;
                     o*)
                         # occupied desktop
-                        wm_infos="${wm_infos} ${name} "
+                        wm_infos="${wm_infos}%{F$light0}%{B$dark1} ${name} %{B-}%{F-}"
                         ;;
                     f*)
                         # free desktop
-                        wm_infos="${wm_infos} ${name} "
+                        wm_infos="${wm_infos}%{F$light4}%{B$dark1} ${name} %{B-}%{F-}"
                         ;;
                     u*)
                         # urgent desktop
