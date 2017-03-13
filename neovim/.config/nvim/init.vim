@@ -17,6 +17,7 @@ Plug 'w0rp/ale'
 Plug 'morhetz/gruvbox'
 Plug 'fneu/breezy'
 Plug 'jacoborus/tender.vim'
+Plug 'fxn/vim-monochrome'
 
 call plug#end()
 " }}}
@@ -25,7 +26,12 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1   " enable 24-bit colour
 let g:gruvbox_italic=1              " enable italics for gruvbox
 set background=dark                 " dark gruvbox mode
 set termguicolors
-colorscheme gruvbox                 " default colorscheme
+
+if $TERM == "rxvt-unicode-256color"
+    colorscheme monochrome
+else
+    colorscheme gruvbox             " default colorscheme
+endif
 " }}}
 " General: {{{
 " Manage buffers efficiently
