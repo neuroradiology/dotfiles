@@ -35,6 +35,9 @@ set hidden
 set softtabstop=4   " number of spaces a tab is worth in insert mode
 set shiftwidth=4    " number of spaces a tab is worth in normal mode
 set expandtab       " tabs are now spaces
+
+" Wrap lines more logically
+set linebreak
 " }}}
 " UI: {{{
 " Italics
