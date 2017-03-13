@@ -68,8 +68,20 @@ set inccommand=nosplit  " Shows command results as you type
 " Mappings: {{{
 let mapleader=" "
 
-nnoremap <leader>o :Files<CR>
+" General
 nnoremap <leader>w :w<CR>
+nnoremap <leader>so :source %<CR>
+
+" fzf
+nnoremap <leader>o :Files<CR>
+nnoremap <leader>go :GFiles<CR>
+nnoremap <leader>b :Buffers<CR>
+
+" vim-fugitive
+nnoremap <leader>ga :Gwrite<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gd :Gdiff<CR>
 
 " Split Navigation
 tnoremap <Esc> <C-\><C-n>
