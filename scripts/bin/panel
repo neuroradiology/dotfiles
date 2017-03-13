@@ -8,6 +8,8 @@ fi
 
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
+source colours
+
 PANEL_HEIGHT=24
 PANEL_FONT_FAMILY="Fira Mono:size=11"
 
@@ -54,7 +56,7 @@ do
     monitor_width=$(bspc query -T -m $i | jq .rectangle.width)
     monitor_x=$(bspc query -T -m $i | jq .rectangle.x)
 
-    cat "$PANEL_FIFO" | panel_bar | lemonbar -g "$monitor_width"x"$PANEL_HEIGHT"+"$monitor_x" -f "$PANEL_FONT_FAMILY" &
+    cat "$PANEL_FIFO" | panel_bar | lemonbar -g "$monitor_width"x"$PANEL_HEIGHT"+"$monitor_x" -f "$PANEL_FONT_FAMILY" -B "$dark0" -u 3 &
 done
 
 wait
