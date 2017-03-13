@@ -27,6 +27,10 @@ set background=dark                 " dark gruvbox mode
 set termguicolors
 colorscheme gruvbox                 " default colorscheme
 " }}}
+" General: {{{
+" Manage buffers efficiently
+set hidden
+" }}}
 " Indentation: {{{
 set softtabstop=4   " number of spaces a tab is worth in insert mode
 set shiftwidth=4    " number of spaces a tab is worth in normal mode
