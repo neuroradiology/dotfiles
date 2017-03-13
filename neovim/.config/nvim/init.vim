@@ -1,21 +1,22 @@
-" VimPlug: {{{
+" Plugins: {{{
 call plug#begin()
 
 "General
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
-
-" Themes
-Plug 'morhetz/gruvbox'
-Plug 'fneu/breezy'
-Plug 'jacoborus/tender.vim'
-
 Plug 'lilydjwg/colorizer'
 
 " Fuzzy Finders
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
+" Linting
 Plug 'w0rp/ale'
+
+" Themes
+Plug 'morhetz/gruvbox'
+Plug 'fneu/breezy'
+Plug 'jacoborus/tender.vim'
 
 call plug#end()
 " }}}
