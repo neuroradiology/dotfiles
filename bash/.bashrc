@@ -19,7 +19,7 @@ alias vimrc='nvim ~/dotfiles/neovim/.config/nvim/init.vim'
 
 # Prompt
 #PS1='[\u@\h \W]\$ '
-PS1='\[\e[31m\W\]\[\e[0m\] '
+PS1='\[\e[34m\W\]\[\e[0m\] '
 PS1+='$(__git_ps1 "[\[\e[37m\]%s\[\e[0m\]] ")'
 PS1+='$(if [[ $? == 0 ]]; then printf "\xe2\x9c\x93"; else printf "\xe2\x9c\x97"; fi)\[\e[0m\] '
 
